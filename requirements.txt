@@ -1,0 +1,12 @@
+# StableOmicsNet — Phase 1 dependencies (all preinstalled on Colab except none)
+numpy
+pandas
+scipy
+scikit-learn
+requests
+matplotlib
+seaborn
+# Added in later phases:
+# torch
+# torch-geometric
+# snfpy
