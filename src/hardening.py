@@ -103,15 +103,25 @@ def run_hardening(top_k=25, n_reps=20, frac=0.8, B=1000, save=True):
     print(f"Shared genes {len(shared)} | TCGA {len(tcga_y)} | "
           f"METABRIC {len(meta_y)} | k={top_k} | B={B}\n")
 
+    # checkpoint after each direction so an interrupted Colab session can
+    # resume; the random-panel generator is advanced exactly as in a full run
+    os.makedirs(RESULTS_DIR, exist_ok=True)
     rows, boots = [], {}
-    print("Direction 1: TCGA -> METABRIC")
-    r, b = _run_direction("TCGA->METABRIC", tcga_X, tcga_y, meta_X, meta_y,
-                          n_reps, frac, top_k, B, rng)
-    rows += r; boots["TCGA->METABRIC"] = b
-    print("\nDirection 2: METABRIC -> TCGA")
-    r, b = _run_direction("METABRIC->TCGA", meta_X, meta_y, tcga_X, tcga_y,
-                          n_reps, frac, top_k, B, rng)
-    rows += r; boots["METABRIC->TCGA"] = b
+    directions = [("TCGA->METABRIC", tcga_X, tcga_y, meta_X, meta_y),
+                  ("METABRIC->TCGA", meta_X, meta_y, tcga_X, tcga_y)]
+    for i, (tag, sX, sy, tX, ty) in enumerate(directions, 1):
+        ck = os.path.join(RESULTS_DIR, f"hardening_checkpoint_v2_k{top_k}_"
+                                       f"{tag.replace('->', '_to_')}.pkl")
+        print(f"{'' if i == 1 else chr(10)}Direction {i}: {tag}")
+        if os.path.exists(ck):
+            r, b = pd.read_pickle(ck)
+            rng.choice(sX.columns, top_k, replace=False)
+            print("  already done (checkpoint)")
+        else:
+            r, b = _run_direction(tag, sX, sy, tX, ty,
+                                  n_reps, frac, top_k, B, rng)
+            pd.to_pickle((r, b), ck)
+        rows += r; boots[tag] = b
     df = pd.DataFrame(rows)
 
     # paired comparison: Consensus vs the best single method, per direction/clf

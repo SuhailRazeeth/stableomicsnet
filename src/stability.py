@@ -16,7 +16,19 @@ seeds / bootstraps / methods), quantify how consistent they are.
 from itertools import combinations
 
 import numpy as np
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, rankdata
+
+
+def top_k_features(imp: dict, k: int) -> list:
+    """
+    The k highest-scoring features of one fit, restricted to features with a
+    positive score. A sparse method (e.g. L1) that assigns non-zero weight to
+    fewer than k features selects only those; zero-score features are NOT used
+    as filler, because ordering ties by input position would make the "filler"
+    identical across fits and inflate stability.
+    """
+    ordered = sorted((f for f in imp if imp[f] > 0), key=imp.get, reverse=True)
+    return ordered[:k]
 
 
 def jaccard(a, b) -> float:
@@ -37,29 +49,28 @@ def mean_pairwise_jaccard(selections) -> float:
 
 def kuncheva_index(selections, n_total: int) -> float:
     """
-    Kuncheva consistency index for equal-sized subsets, corrected for chance.
+    Kuncheva consistency index, corrected for chance.
 
     For two subsets A, B of size k drawn from n_total features with
     r = |A n B|:   KI = (r - k^2/n) / (k - k^2/n)
-    Returns the mean over all pairs. Requires all selections the same size k
-    with 0 < k < n_total.
+    Subsets of unequal size (a sparse method selecting fewer than k features)
+    use the natural extension KI = (r - ka*kb/n) / (min(ka, kb) - ka*kb/n),
+    which reduces to the formula above when ka = kb. Returns the mean over
+    all pairs.
     """
     sels = [set(s) for s in selections]
-    sizes = {len(s) for s in sels}
-    if len(sizes) != 1:
-        raise ValueError(f"Kuncheva index needs equal-sized subsets; got {sizes}")
-    k = sizes.pop()
     n = n_total
-    if k == 0 or k == n:
-        raise ValueError("Subset size must satisfy 0 < k < n_total")
-    denom = k - (k * k) / n
     pairs = list(combinations(range(len(sels)), 2))
     if not pairs:
         return 1.0
     vals = []
     for i, j in pairs:
+        ka, kb = len(sels[i]), len(sels[j])
+        if min(ka, kb) == 0 or max(ka, kb) >= n:
+            raise ValueError("Subset sizes must satisfy 0 < k < n_total")
         r = len(sels[i] & sels[j])
-        vals.append((r - (k * k) / n) / denom)
+        expected = ka * kb / n
+        vals.append((r - expected) / (min(ka, kb) - expected))
     return float(np.mean(vals))
 
 
@@ -100,17 +111,21 @@ def consensus_ranking(importances, top_k: int | None = None) -> list:
     This is the 'stable core' selector used later in the pipeline.
     """
     dicts = [dict(d) for d in importances]
-    all_feats = set().union(*[set(d) for d in dicts]) if dicts else set()
-    # rank within each selection (1 = best); unseen features get worst+1
-    mean_ranks = {}
-    for f in all_feats:
-        ranks = []
-        for d in dicts:
-            ordered = sorted(d, key=d.get, reverse=True)
-            ranks.append(ordered.index(f) + 1 if f in d else len(ordered) + 1)
-        mean_ranks[f] = np.mean(ranks)
-    ordered = sorted(all_feats, key=lambda f: mean_ranks[f])
-    return ordered[:top_k] if top_k else ordered
+    return weighted_consensus_ranking(dicts, np.ones(len(dicts)), top_k)
+
+
+def _rank_matrix(dicts, feats):
+    """
+    Rank of every feature in every importance dict (1 = best). Tied scores,
+    in particular the many exact zeros of sparse methods, share their average
+    rank, so ties are never resolved by input position. Features missing from
+    a dict rank below all of its features.
+    """
+    R = np.empty((len(dicts), len(feats)))
+    for i, d in enumerate(dicts):
+        s = np.array([d.get(f, -np.inf) for f in feats], dtype=float)
+        R[i] = rankdata(-s, method="average")
+    return R
 
 
 def weighted_consensus_ranking(importances, weights, top_k: int | None = None) -> list:
@@ -131,15 +146,11 @@ def weighted_consensus_ranking(importances, weights, top_k: int | None = None) -
         return consensus_ranking(dicts, top_k)
     w = w / w.sum()
 
-    all_feats = set().union(*[set(d) for d in dicts]) if dicts else set()
-    orders = [sorted(d, key=d.get, reverse=True) for d in dicts]
-    pos = [{f: i + 1 for i, f in enumerate(o)} for o in orders]
-    scores = {}
-    for f in all_feats:
-        r = np.array([p.get(f, len(o) + 1) for p, o in zip(pos, orders)],
-                     dtype=float)
-        scores[f] = float((w * r).sum())
-    ordered = sorted(all_feats, key=lambda f: scores[f])
+    feats = sorted(set().union(*[set(d) for d in dicts])) if dicts else []
+    if not feats:
+        return []
+    scores = w @ _rank_matrix(dicts, feats)
+    ordered = [feats[i] for i in np.argsort(scores, kind="stable")]
     return ordered[:top_k] if top_k else ordered
 
 

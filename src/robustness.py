@@ -59,8 +59,20 @@ def run_robustness(ks=(10, 25, 50, 100), n_reps=20, frac=0.8, B=1000, save=True)
     rng_global = np.random.default_rng(0)
     print(f"Shared genes {len(shared)} | TCGA {len(tcga_y)} | METABRIC {len(meta_y)}\n")
 
+    # checkpoint after every panel size so an interrupted Colab session can
+    # resume; each k uses its own seeds, so resumed results are identical
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    ck_t = os.path.join(RESULTS_DIR, "robustness_checkpoint_transfer_v2.csv")
+    ck_s = os.path.join(RESULTS_DIR, "robustness_checkpoint_significance_v2.csv")
     rows, sig_rows = [], []
+    if os.path.exists(ck_t) and os.path.exists(ck_s):
+        rows = pd.read_csv(ck_t).to_dict("records")
+        sig_rows = pd.read_csv(ck_s).to_dict("records")
+    done = {r["k"] for r in sig_rows}
     for k in ks:
+        if k in done:
+            print(f"  k={k} already done (checkpoint)\n")
+            continue
         panels, variants = select_panels(tcga_X.values, tcga_y, feat_names,
                                          n_reps, frac, k)
         # assemble every panel to evaluate at this k
@@ -121,10 +133,14 @@ def run_robustness(ks=(10, 25, 50, 100), n_reps=20, frac=0.8, B=1000, save=True)
                              "verdict": verdict})
             print(f"  k={k:3d} {vname} vs {best}: delta={diff.mean():+.3f} "
                   f"[{lo:+.3f},{hi:+.3f}] p={p:.3f} -> {verdict}")
+        pd.DataFrame(rows).to_csv(ck_t, index=False)
+        pd.DataFrame(sig_rows).to_csv(ck_s, index=False)
         print()
 
     df = pd.DataFrame(rows)
+    df = df[df.k.isin(ks)]
     sig = pd.DataFrame(sig_rows)
+    sig = sig[sig.k.isin(ks)]
 
     if save:
         os.makedirs(RESULTS_DIR, exist_ok=True)

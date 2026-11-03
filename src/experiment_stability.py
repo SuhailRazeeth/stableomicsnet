@@ -29,7 +29,7 @@ from config import RESULTS_DIR
 from data_loader import load_mogonet
 from methods import METHODS
 from stability import (mean_pairwise_jaccard, kuncheva_index,
-                       consensus_ranking)
+                       consensus_ranking, top_k_features)
 
 
 def _concat(d, split):
@@ -81,8 +81,7 @@ def run_experiment(dataset="BRCA", n_reps=20, frac=0.8, top_k=50, save=True):
             y_pred, imp = fn(Xtr[sub], ytr[sub], Xte, feat_names,
                              seed=r, top_k=top_k)
             accs.append(balanced_accuracy_score(yte, y_pred))
-            top = sorted(imp, key=imp.get, reverse=True)[:top_k]
-            sels.append(set(top))
+            sels.append(set(top_k_features(imp, top_k)))
             imps.append(imp)
         method_selections[name] = sels
         method_importances[name] = imps

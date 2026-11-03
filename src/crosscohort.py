@@ -33,7 +33,7 @@ from config import DATA_DIR, RESULTS_DIR
 from data_loader import load_mogonet, load_metabric
 from methods import METHODS
 from stability import (mean_pairwise_jaccard, consensus_ranking,
-                       weighted_consensus_ranking)
+                       weighted_consensus_ranking, top_k_features)
 
 # canonical 5 PAM50 subtypes shared by both cohorts
 CANON = ["Normal", "Basal", "Her2", "LumA", "LumB"]
@@ -118,7 +118,7 @@ def select_panels(Xtr, ytr, feat_names, n_reps=20, frac=0.8, top_k=50,
             _, imp = fn(Xtr[sub], ytr[sub], Xtr[sub], feat_names,
                         seed=r, top_k=top_k)
             imps.append(imp)
-            sels.append(set(sorted(imp, key=imp.get, reverse=True)[:top_k]))
+            sels.append(set(top_k_features(imp, top_k)))
         stab = mean_pairwise_jaccard(sels)
         panels[name] = (consensus_ranking(imps, top_k=top_k), stab)
         method_imps[name], method_stab[name] = imps, stab

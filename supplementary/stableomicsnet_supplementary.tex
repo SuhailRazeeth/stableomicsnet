@@ -1,0 +1,340 @@
+%%% Frontiers Supplementary Material - generated from the result CSVs
+\documentclass[utf8]{frontiers_suppmat}
+\usepackage{url,hyperref,lineno,microtype}
+\usepackage{longtable,array,booktabs}
+\usepackage[onehalfspacing]{setspace}
+
+\begin{document}
+\onecolumn
+\firstpage{1}
+
+\title[Supplementary Material]{{\helveticaitalic{Supplementary Material}}}
+\maketitle
+
+\section{Supplementary Data}
+
+All primary data analyzed are publicly available. TCGA-BRCA and ROSMAP are available in the preprocessed form distributed with MOGONET, TCGA KIRC, KIRP and KICH from UCSC Xena, and METABRIC from the cBioPortal data hub. The StableOmicsNet source code, the KIPAN construction script, the simulation code and the complete result tables reproduced below are available at \url{https://github.com/SuhailRazeeth/stableomicsnet} and archived at \href{https://doi.org/10.5281/zenodo.22348567}{doi:10.5281/zenodo.22348567}.
+
+\section{Supplementary Tables}
+
+\footnotesize
+
+\begin{longtable}{llccp{5cm}}
+\caption{Composition of the stable core by omic layer for every method and dataset (20 stratified 80\% subsamples, top-50 features).}\label{tab:S1}\\
+\hline
+\textbf{Dataset} & \textbf{Method} & \textbf{Stable core} & \textbf{\% of 50} & \textbf{By omic layer} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Dataset} & \textbf{Method} & \textbf{Stable core} & \textbf{\% of 50} & \textbf{By omic layer} \\
+\hline
+\endhead
+\hline
+\endfoot
+BRCA & RandomForest & 3 & 6\% & mRNA 3, DNA methylation 0, miRNA 0 \\
+BRCA & ExtraTrees & 2 & 4\% & mRNA 2, DNA methylation 0, miRNA 0 \\
+BRCA & L1-Logistic & 5 & 10\% & mRNA 4, DNA methylation 0, miRNA 1 \\
+BRCA & Univariate-ANOVA & 26 & 52\% & mRNA 21, DNA methylation 4, miRNA 1 \\
+BRCA & GCN & 1 & 2\% & mRNA 0, DNA methylation 0, miRNA 1 \\
+BRCA & SNF & 0 & 0\% & mRNA 0, DNA methylation 0, miRNA 0 \\
+ROSMAP & RandomForest & 2 & 4\% & mRNA 0, DNA methylation 0, miRNA 2 \\
+ROSMAP & ExtraTrees & 3 & 6\% & mRNA 1, DNA methylation 0, miRNA 2 \\
+ROSMAP & L1-Logistic & 4 & 8\% & mRNA 1, DNA methylation 1, miRNA 2 \\
+ROSMAP & Univariate-ANOVA & 9 & 18\% & mRNA 7, DNA methylation 0, miRNA 2 \\
+ROSMAP & GCN & 4 & 8\% & mRNA 1, DNA methylation 3, miRNA 0 \\
+ROSMAP & SNF & 5 & 10\% & mRNA 2, DNA methylation 2, miRNA 1 \\
+KIPAN & RandomForest & 3 & 6\% & mRNA 3, CNV 0, miRNA 0 \\
+KIPAN & ExtraTrees & 2 & 4\% & mRNA 2, CNV 0, miRNA 0 \\
+KIPAN & L1-Logistic & 9 & 18\% & mRNA 6, CNV 0, miRNA 3 \\
+KIPAN & Univariate-ANOVA & 31 & 62\% & mRNA 29, CNV 0, miRNA 2 \\
+KIPAN & GCN & 0 & 0\% & mRNA 0, CNV 0, miRNA 0 \\
+KIPAN & SNF & 0 & 0\% & mRNA 0, CNV 0, miRNA 0 \\
+\end{longtable}
+
+\begin{longtable}{cp{4.2cm}p{4.2cm}p{4cm}}
+\caption{Global consensus biomarker panels, given as the 50-feature Consensus(all) panel of each dataset (equal-weight rank aggregation of all six methods over 20 subsamples), in consensus rank order. These are the panels submitted to enrichment analysis (Supplementary Table S3).}\label{tab:S2}\\
+\hline
+\textbf{Rank} & \textbf{BRCA} & \textbf{ROSMAP} & \textbf{KIPAN} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Rank} & \textbf{BRCA} & \textbf{ROSMAP} & \textbf{KIPAN} \\
+\hline
+\endhead
+\hline
+\endfoot
+1 & mRNA:GPR77\textbar{}27202 & miRNA:hsa-miR-132 & mRNA:GALNT14 \\
+2 & mRNA:TFF3\textbar{}7033 & mRNA:ENSG00000242349.1 & mRNA:TJP3 \\
+3 & mRNA:FOXC1\textbar{}2296 & miRNA:hsa-miR-129-5p & mRNA:PCDH17 \\
+4 & mRNA:MAPT\textbar{}4137 & mRNA:ENSG00000180777.9 & mRNA:CP \\
+5 & mRNA:KRT16\textbar{}3868 & mRNA:ENSG00000142765.12 & mRNA:LOC100131551 \\
+6 & mRNA:SLC44A4\textbar{}80736 & mRNA:ENSG00000198624.8 & miRNA:MIMAT0017982 \\
+7 & mRNA:SOX11\textbar{}6664 & mRNA:ENSG00000105419.11 & mRNA:NDUFA4L2 \\
+8 & mRNA:GPR160\textbar{}26996 & DNA\_methylation:cg24192663 & mRNA:FABP7 \\
+9 & miRNA:hsa-mir-190b & mRNA:ENSG00000168743.8 & mRNA:KCNN3 \\
+10 & mRNA:CKS1B\textbar{}1163 & mRNA:ENSG00000125534.4 & mRNA:APLN \\
+11 & mRNA:ESR1\textbar{}2099 & mRNA:ENSG00000254858.2 & mRNA:SLC6A3 \\
+12 & DNA\_methylation:MIR128-1 & mRNA:ENSG00000267488.1 & mRNA:KLK15 \\
+13 & mRNA:C6orf97\textbar{}80129 & mRNA:ENSG00000105643.3 & mRNA:C19orf51 \\
+14 & mRNA:BCAS1\textbar{}8537 & mRNA:ENSG00000253210.1 & mRNA:RAPGEF4 \\
+15 & mRNA:PPP1R14C\textbar{}81706 & DNA\_methylation:cg13468685 & mRNA:TSPAN7 \\
+16 & mRNA:SLC7A8\textbar{}23428 & DNA\_methylation:cg25736482 & mRNA:PCSK6 \\
+17 & mRNA:UGT8\textbar{}7368 & mRNA:ENSG00000117266.11 & mRNA:ESM1 \\
+18 & miRNA:hsa-mir-18a & mRNA:ENSG00000196415.4 & mRNA:RGS5 \\
+19 & mRNA:AGR3\textbar{}155465 & mRNA:ENSG00000177025.2 & mRNA:ADAMTS4 \\
+20 & mRNA:DNALI1\textbar{}7802 & DNA\_methylation:cg27091787 & mRNA:NR1H4 \\
+21 & mRNA:SIDT1\textbar{}54847 & mRNA:ENSG00000182310.7 & mRNA:PREX2 \\
+22 & mRNA:ANXA9\textbar{}8416 & mRNA:ENSG00000235501.1 & mRNA:TRIM50 \\
+23 & mRNA:TBC1D9\textbar{}23158 & DNA\_methylation:cg16003238 & mRNA:ANGPTL4 \\
+24 & mRNA:XBP1\textbar{}7494 & mRNA:ENSG00000053702.10 & miRNA:MIMAT0001341 \\
+25 & mRNA:GATA3\textbar{}2625 & mRNA:ENSG00000227544.2 & mRNA:FOLH1 \\
+26 & mRNA:CA12\textbar{}771 & DNA\_methylation:cg04983977 & mRNA:PCSK1N \\
+27 & mRNA:ROPN1\textbar{}54763 & DNA\_methylation:cg01182697 & mRNA:FLT1 \\
+28 & mRNA:C1orf64\textbar{}149563 & DNA\_methylation:cg12447832 & mRNA:SOX11 \\
+29 & mRNA:GMPS\textbar{}8833 & miRNA:hsa-miR-517c\_hsa-miR-519a & mRNA:LRRN4 \\
+30 & mRNA:MLPH\textbar{}79083 & mRNA:ENSG00000151552.7 & mRNA:FOXJ1 \\
+31 & DNA\_methylation:FOXA1 & miRNA:hsa-miR-146b-5p & mRNA:SERPINE1 \\
+32 & mRNA:TCF19\textbar{}6941 & DNA\_methylation:cg00398048 & mRNA:KCNJ16 \\
+33 & mRNA:WDR67\textbar{}93594 & DNA\_methylation:cg08952029 & mRNA:SPARCL1 \\
+34 & mRNA:PRR15\textbar{}222171 & mRNA:ENSG00000254211.1 & mRNA:BSND \\
+35 & mRNA:MIA\textbar{}8190 & mRNA:ENSG00000203565.2 & miRNA:MIMAT0000445 \\
+36 & mRNA:VGLL1\textbar{}51442 & mRNA:ENSG00000166508.13 & mRNA:EBF2 \\
+37 & mRNA:ABAT\textbar{}18 & mRNA:ENSG00000171388.9 & mRNA:ATP6V0D2 \\
+38 & mRNA:CYP2B7P1\textbar{}1556 & DNA\_methylation:cg22680204 & mRNA:HECW2 \\
+39 & mRNA:CENPN\textbar{}55839 & DNA\_methylation:cg18149207 & mRNA:KDR \\
+40 & mRNA:SFT2D2\textbar{}375035 & mRNA:ENSG00000086159.8 & miRNA:MIMAT0004499 \\
+41 & mRNA:AR\textbar{}367 & mRNA:ENSG00000236609.3 & miRNA:MIMAT0004809 \\
+42 & mRNA:ROPN1B\textbar{}152015 & mRNA:ENSG00000088836.7 & mRNA:CD36 \\
+43 & mRNA:AMY1A\textbar{}276 & mRNA:ENSG00000198830.6 & mRNA:TMEM45A \\
+44 & mRNA:PGR\textbar{}5241 & DNA\_methylation:cg24765079 & mRNA:CCDC135 \\
+45 & mRNA:C4orf34\textbar{}201895 & DNA\_methylation:cg14613972 & mRNA:SLC44A4 \\
+46 & mRNA:FZD9\textbar{}8326 & mRNA:ENSG00000182851.2 & miRNA:MIMAT0000444 \\
+47 & mRNA:GFRA1\textbar{}2674 & DNA\_methylation:cg08367223 & mRNA:LOX \\
+48 & mRNA:SCUBE2\textbar{}57758 & mRNA:ENSG00000235478.1 & mRNA:FAM189A1 \\
+49 & mRNA:CHEK1\textbar{}1111 & mRNA:ENSG00000170276.4 & mRNA:PTGER3 \\
+50 & mRNA:ARSG\textbar{}22901 & mRNA:ENSG00000111181.8 & mRNA:UPB1 \\
+\end{longtable}
+
+\begin{longtable}{lp{4.2cm}p{2.6cm}ccp{3.4cm}}
+\caption{Complete pathway and Gene Ontology enrichment of the 50-feature Consensus(all) panels (Enrichr, terms with a Benjamini-Hochberg adjusted $p<0.05$).}\label{tab:S3}\\
+\hline
+\textbf{Dataset} & \textbf{Term} & \textbf{Library} & \textbf{Overlap} & \textbf{Adj. $p$} & \textbf{Genes} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Dataset} & \textbf{Term} & \textbf{Library} & \textbf{Overlap} & \textbf{Adj. $p$} & \textbf{Genes} \\
+\hline
+\endhead
+\hline
+\endfoot
+BRCA & Estrogen Response Early & MSigDB\_Hallmark\_2020 & 11/200 & 9.72e-12 & CA12, AR, FOXC1, XBP1, MLPH, TFF3, ABAT, GFRA1, PGR, ANXA9, MAPT \\
+BRCA & Estrogen Response Late & MSigDB\_Hallmark\_2020 & 8/200 & 1.16e-07 & SCUBE2, CA12, FOXC1, XBP1, TFF3, PGR, ANXA9, MAPT \\
+BRCA & steroid hormone mediated signaling pathway (GO:0043401) & GO\_Biological\_Process\_2021 & 3/15 & 3.11e-03 & AR, PGR, ESR1 \\
+BRCA & response to estrogen (GO:0043627) & GO\_Biological\_Process\_2021 & 3/35 & 2.17e-02 & AR, GATA3, ESR1 \\
+BRCA & intracellular steroid hormone receptor signaling pathway (GO:0030518) & GO\_Biological\_Process\_2021 & 3/44 & 2.88e-02 & AR, PGR, ESR1 \\
+BRCA & response to interleukin-4 (GO:0070670) & GO\_Biological\_Process\_2021 & 2/10 & 2.88e-02 & XBP1, GATA3 \\
+BRCA & cellular response to interleukin-4 (GO:0071353) & GO\_Biological\_Process\_2021 & 2/10 & 2.88e-02 & XBP1, GATA3 \\
+BRCA & positive regulation of transcription regulatory region DNA binding (GO:2000679) & GO\_Biological\_Process\_2021 & 2/21 & 4.42e-02 & FOXC1, GATA3 \\
+BRCA & autonomic nervous system development (GO:0048483) & GO\_Biological\_Process\_2021 & 2/21 & 4.42e-02 & SOX11, GATA3 \\
+BRCA & negative regulation of macromolecule metabolic process (GO:0010605) & GO\_Biological\_Process\_2021 & 4/194 & 4.42e-02 & SOX11, PGR, MAPT, ESR1 \\
+BRCA & positive regulation of lymphocyte differentiation (GO:0045621) & GO\_Biological\_Process\_2021 & 2/20 & 4.42e-02 & XBP1, GATA3 \\
+BRCA & positive regulation of transcription by RNA polymerase II (GO:0045944) & GO\_Biological\_Process\_2021 & 8/908 & 4.42e-02 & FOXA1, AR, FOXC1, XBP1, SOX11, PGR, GATA3, ESR1 \\
+BRCA & sympathetic nervous system development (GO:0048485) & GO\_Biological\_Process\_2021 & 2/16 & 4.42e-02 & SOX11, GATA3 \\
+BRCA & intracellular estrogen receptor signaling pathway (GO:0030520) & GO\_Biological\_Process\_2021 & 2/18 & 4.42e-02 & AR, ESR1 \\
+BRCA & regulation of epithelial to mesenchymal transition (GO:0010717) & GO\_Biological\_Process\_2021 & 3/76 & 4.42e-02 & FOXA1, FOXC1, GATA3 \\
+BRCA & regulation of gene expression (GO:0010468) & GO\_Biological\_Process\_2021 & 9/1079 & 4.42e-02 & TCF19, AR, FOXC1, SOX11, PGR, GATA3, MAPT, ESR1, VGLL1 \\
+BRCA & mesenchymal cell development (GO:0014031) & GO\_Biological\_Process\_2021 & 2/19 & 4.42e-02 & FOXC1, SOX11 \\
+BRCA & positive regulation of transcription, DNA-templated (GO:0045893) & GO\_Biological\_Process\_2021 & 9/1183 & 4.51e-02 & FOXA1, AR, FOXC1, XBP1, CHEK1, SOX11, PGR, GATA3, ESR1 \\
+KIPAN & Hypoxia & MSigDB\_Hallmark\_2020 & 5/200 & 1.27e-03 & LOX, SERPINE1, ANGPTL4, CP, TMEM45A \\
+KIPAN & KRAS Signaling Up & MSigDB\_Hallmark\_2020 & 5/200 & 1.27e-03 & PCSK1N, TSPAN7, NR1H4, SPARCL1, ANGPTL4 \\
+KIPAN & Adipogenesis & MSigDB\_Hallmark\_2020 & 4/200 & 9.64e-03 & PTGER3, SPARCL1, CD36, ANGPTL4 \\
+\end{longtable}
+
+\begin{longtable}{clccc}
+\caption{Run-to-run reproducibility of cross-cohort transfer (TCGA-BRCA to METABRIC, logistic regression) in independent executions of identical code with identical random seeds and data. At $k = 25$, execution 1 is the panel-size analysis and execution 2 is the hardening analysis, and both report the bootstrap mean over identical resamples. At $k = 50$, execution 1 is the panel-size analysis (bootstrap mean) and execution 2 is the stand-alone cross-cohort analysis (point estimate), so differences below 0.001 at $k = 50$ are not interpretable. The small difference for the all-gene model at $k = 25$ reflects the numerical tolerance of a logistic regression fitted on 870 features.}\label{tab:S4}\\
+\hline
+\textbf{$k$} & \textbf{Panel} & \textbf{Execution 1} & \textbf{Execution 2} & \textbf{Absolute difference} \\
+\hline
+\endfirsthead
+\hline
+\textbf{$k$} & \textbf{Panel} & \textbf{Execution 1} & \textbf{Execution 2} & \textbf{Absolute difference} \\
+\hline
+\endhead
+\hline
+\endfoot
+25 & RandomForest & 0.5904 & 0.5904 & 0.0000 \\
+25 & ExtraTrees & 0.5670 & 0.5670 & 0.0000 \\
+25 & L1-Logistic & 0.5337 & 0.5337 & 0.0000 \\
+25 & Univariate-ANOVA & 0.5714 & 0.5714 & 0.0000 \\
+25 & GCN & 0.5083 & 0.4996 & 0.0087 \\
+25 & SNF & 0.5308 & 0.4921 & 0.0387 \\
+25 & Consensus(all) & 0.5786 & 0.5889 & 0.0103 \\
+25 & Consensus(stable) & 0.5779 & 0.5779 & 0.0000 \\
+25 & Consensus(weighted) & 0.5838 & 0.5995 & 0.0157 \\
+25 & AllShared & 0.5560 & 0.5549 & 0.0011 \\
+50 & RandomForest & 0.5653 & 0.5655 & 0.0002 \\
+50 & ExtraTrees & 0.5502 & 0.5504 & 0.0002 \\
+50 & L1-Logistic & 0.5154 & 0.5156 & 0.0001 \\
+50 & Univariate-ANOVA & 0.5624 & 0.5625 & 0.0000 \\
+50 & GCN & 0.5427 & 0.5473 & 0.0047 \\
+50 & SNF & 0.5585 & 0.4828 & 0.0757 \\
+50 & Consensus(all) & 0.5754 & 0.5751 & 0.0003 \\
+50 & Consensus(stable) & 0.5767 & 0.5767 & 0.0001 \\
+50 & Consensus(weighted) & 0.5819 & 0.5846 & 0.0027 \\
+50 & AllShared & 0.5560 & 0.5551 & 0.0009 \\
+\end{longtable}
+
+\begin{longtable}{llcccccc}
+\caption{Stability and within-cohort accuracy across panel sizes. Accuracy is the held-out balanced accuracy of a common logistic regression trained on the top-$k$ consensus panel of each method or consensus strategy (20 stratified 80\% subsamples). Stability is not defined for consensus strategies (NA, not applicable).}\label{tab:S5}\\
+\hline
+\textbf{Dataset} & \textbf{Method} & \textbf{$k$} & \textbf{Jaccard} & \textbf{Kuncheva} & \textbf{Stable core} & \textbf{Accuracy} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Dataset} & \textbf{Method} & \textbf{$k$} & \textbf{Jaccard} & \textbf{Kuncheva} & \textbf{Stable core} & \textbf{Accuracy} \\
+\hline
+\endhead
+\hline
+\endfoot
+BRCA & RandomForest & 10 & 0.231 & 0.363 & 0 & 0.689 \\
+BRCA & RandomForest & 25 & 0.333 & 0.491 & 1 & 0.680 \\
+BRCA & RandomForest & 50 & 0.352 & 0.509 & 3 & 0.712 \\
+BRCA & RandomForest & 100 & 0.360 & 0.509 & 11 & 0.664 \\
+BRCA & ExtraTrees & 10 & 0.153 & 0.255 & 0 & 0.671 \\
+BRCA & ExtraTrees & 25 & 0.178 & 0.291 & 0 & 0.678 \\
+BRCA & ExtraTrees & 50 & 0.227 & 0.356 & 2 & 0.713 \\
+BRCA & ExtraTrees & 100 & 0.278 & 0.410 & 3 & 0.720 \\
+BRCA & L1-Logistic & 10 & 0.250 & 0.391 & 1 & 0.627 \\
+BRCA & L1-Logistic & 25 & 0.295 & 0.445 & 2 & 0.690 \\
+BRCA & L1-Logistic & 50 & 0.299 & 0.447 & 5 & 0.683 \\
+BRCA & L1-Logistic & 100 & 0.319 & 0.461 & 8 & 0.672 \\
+BRCA & Univariate-ANOVA & 10 & 0.737 & 0.844 & 4 & 0.643 \\
+BRCA & Univariate-ANOVA & 25 & 0.586 & 0.733 & 12 & 0.662 \\
+BRCA & Univariate-ANOVA & 50 & 0.714 & 0.829 & 26 & 0.635 \\
+BRCA & Univariate-ANOVA & 100 & 0.704 & 0.818 & 56 & 0.653 \\
+BRCA & GCN & 10 & 0.156 & 0.259 & 0 & 0.460 \\
+BRCA & GCN & 25 & 0.221 & 0.351 & 0 & 0.549 \\
+BRCA & GCN & 50 & 0.257 & 0.394 & 1 & 0.539 \\
+BRCA & GCN & 100 & 0.271 & 0.400 & 2 & 0.533 \\
+BRCA & SNF & 10 & 0.142 & 0.202 & 0 & 0.401 \\
+BRCA & SNF & 25 & 0.094 & 0.147 & 0 & 0.532 \\
+BRCA & SNF & 50 & 0.085 & 0.133 & 0 & 0.572 \\
+BRCA & SNF & 100 & 0.094 & 0.134 & 0 & 0.582 \\
+BRCA & Consensus(all) & 10 & NA & NA & NA & 0.620 \\
+BRCA & Consensus(stable) & 10 & NA & NA & NA & 0.644 \\
+BRCA & Consensus(weighted) & 10 & NA & NA & NA & 0.640 \\
+BRCA & Consensus(all) & 25 & NA & NA & NA & 0.719 \\
+BRCA & Consensus(stable) & 25 & NA & NA & NA & 0.725 \\
+BRCA & Consensus(weighted) & 25 & NA & NA & NA & 0.694 \\
+BRCA & Consensus(all) & 50 & NA & NA & NA & 0.764 \\
+BRCA & Consensus(stable) & 50 & NA & NA & NA & 0.758 \\
+BRCA & Consensus(weighted) & 50 & NA & NA & NA & 0.744 \\
+BRCA & Consensus(all) & 100 & NA & NA & NA & 0.715 \\
+BRCA & Consensus(stable) & 100 & NA & NA & NA & 0.702 \\
+BRCA & Consensus(weighted) & 100 & NA & NA & NA & 0.699 \\
+ROSMAP & RandomForest & 10 & 0.208 & 0.327 & 1 & 0.743 \\
+ROSMAP & RandomForest & 25 & 0.198 & 0.298 & 2 & 0.762 \\
+ROSMAP & RandomForest & 50 & 0.238 & 0.326 & 2 & 0.791 \\
+ROSMAP & RandomForest & 100 & 0.292 & 0.341 & 4 & 0.706 \\
+ROSMAP & ExtraTrees & 10 & 0.230 & 0.358 & 1 & 0.810 \\
+ROSMAP & ExtraTrees & 25 & 0.221 & 0.332 & 2 & 0.782 \\
+ROSMAP & ExtraTrees & 50 & 0.273 & 0.374 & 3 & 0.762 \\
+ROSMAP & ExtraTrees & 100 & 0.313 & 0.372 & 7 & 0.705 \\
+ROSMAP & L1-Logistic & 10 & 0.261 & 0.393 & 0 & 0.713 \\
+ROSMAP & L1-Logistic & 25 & 0.297 & 0.428 & 1 & 0.742 \\
+ROSMAP & L1-Logistic & 50 & 0.319 & 0.472 & 4 & 0.735 \\
+ROSMAP & L1-Logistic & 100 & 0.320 & 0.478 & 4 & 0.678 \\
+ROSMAP & Univariate-ANOVA & 10 & 0.365 & 0.517 & 1 & 0.794 \\
+ROSMAP & Univariate-ANOVA & 25 & 0.366 & 0.511 & 4 & 0.745 \\
+ROSMAP & Univariate-ANOVA & 50 & 0.397 & 0.526 & 9 & 0.774 \\
+ROSMAP & Univariate-ANOVA & 100 & 0.462 & 0.556 & 21 & 0.745 \\
+ROSMAP & GCN & 10 & 0.275 & 0.410 & 0 & 0.465 \\
+ROSMAP & GCN & 25 & 0.316 & 0.454 & 1 & 0.611 \\
+ROSMAP & GCN & 50 & 0.330 & 0.449 & 4 & 0.652 \\
+ROSMAP & GCN & 100 & 0.411 & 0.498 & 8 & 0.641 \\
+ROSMAP & SNF & 10 & 0.545 & 0.671 & 0 & 0.696 \\
+ROSMAP & SNF & 25 & 0.564 & 0.676 & 3 & 0.743 \\
+ROSMAP & SNF & 50 & 0.533 & 0.640 & 5 & 0.801 \\
+ROSMAP & SNF & 100 & 0.570 & 0.653 & 13 & 0.754 \\
+ROSMAP & Consensus(all) & 10 & NA & NA & NA & 0.799 \\
+ROSMAP & Consensus(stable) & 10 & NA & NA & NA & 0.784 \\
+ROSMAP & Consensus(weighted) & 10 & NA & NA & NA & 0.858 \\
+ROSMAP & Consensus(all) & 25 & NA & NA & NA & 0.763 \\
+ROSMAP & Consensus(stable) & 25 & NA & NA & NA & 0.782 \\
+ROSMAP & Consensus(weighted) & 25 & NA & NA & NA & 0.801 \\
+ROSMAP & Consensus(all) & 50 & NA & NA & NA & 0.753 \\
+ROSMAP & Consensus(stable) & 50 & NA & NA & NA & 0.744 \\
+ROSMAP & Consensus(weighted) & 50 & NA & NA & NA & 0.772 \\
+ROSMAP & Consensus(all) & 100 & NA & NA & NA & 0.715 \\
+ROSMAP & Consensus(stable) & 100 & NA & NA & NA & 0.754 \\
+ROSMAP & Consensus(weighted) & 100 & NA & NA & NA & 0.822 \\
+KIPAN & RandomForest & 10 & 0.208 & 0.331 & 0 & 0.888 \\
+KIPAN & RandomForest & 25 & 0.360 & 0.522 & 0 & 0.963 \\
+KIPAN & RandomForest & 50 & 0.474 & 0.636 & 3 & 0.964 \\
+KIPAN & RandomForest & 100 & 0.446 & 0.603 & 17 & 0.959 \\
+KIPAN & ExtraTrees & 10 & 0.207 & 0.332 & 0 & 0.917 \\
+KIPAN & ExtraTrees & 25 & 0.283 & 0.433 & 0 & 0.909 \\
+KIPAN & ExtraTrees & 50 & 0.379 & 0.540 & 2 & 0.926 \\
+KIPAN & ExtraTrees & 100 & 0.439 & 0.596 & 11 & 0.959 \\
+KIPAN & L1-Logistic & 10 & 0.410 & 0.566 & 1 & 0.938 \\
+KIPAN & L1-Logistic & 25 & 0.383 & 0.546 & 3 & 0.951 \\
+KIPAN & L1-Logistic & 50 & 0.426 & 0.589 & 9 & 0.950 \\
+KIPAN & L1-Logistic & 100 & 0.451 & 0.641 & 10 & 0.980 \\
+KIPAN & Univariate-ANOVA & 10 & 0.563 & 0.711 & 4 & 0.938 \\
+KIPAN & Univariate-ANOVA & 25 & 0.718 & 0.831 & 12 & 0.955 \\
+KIPAN & Univariate-ANOVA & 50 & 0.753 & 0.856 & 31 & 0.955 \\
+KIPAN & Univariate-ANOVA & 100 & 0.801 & 0.886 & 71 & 0.959 \\
+KIPAN & GCN & 10 & 0.140 & 0.231 & 0 & 0.613 \\
+KIPAN & GCN & 25 & 0.164 & 0.268 & 0 & 0.892 \\
+KIPAN & GCN & 50 & 0.191 & 0.302 & 0 & 0.901 \\
+KIPAN & GCN & 100 & 0.234 & 0.352 & 3 & 0.963 \\
+KIPAN & SNF & 10 & 0.247 & 0.331 & 0 & 0.450 \\
+KIPAN & SNF & 25 & 0.376 & 0.472 & 0 & 0.454 \\
+KIPAN & SNF & 50 & 0.448 & 0.563 & 0 & 0.454 \\
+KIPAN & SNF & 100 & 0.416 & 0.540 & 0 & 0.454 \\
+KIPAN & Consensus(all) & 10 & NA & NA & NA & 0.921 \\
+KIPAN & Consensus(stable) & 10 & NA & NA & NA & 0.934 \\
+KIPAN & Consensus(weighted) & 10 & NA & NA & NA & 0.921 \\
+KIPAN & Consensus(all) & 25 & NA & NA & NA & 0.942 \\
+KIPAN & Consensus(stable) & 25 & NA & NA & NA & 0.926 \\
+KIPAN & Consensus(weighted) & 25 & NA & NA & NA & 0.918 \\
+KIPAN & Consensus(all) & 50 & NA & NA & NA & 0.955 \\
+KIPAN & Consensus(stable) & 50 & NA & NA & NA & 0.951 \\
+KIPAN & Consensus(weighted) & 50 & NA & NA & NA & 0.955 \\
+KIPAN & Consensus(all) & 100 & NA & NA & NA & 0.951 \\
+KIPAN & Consensus(stable) & 100 & NA & NA & NA & 0.951 \\
+KIPAN & Consensus(weighted) & 100 & NA & NA & NA & 0.951 \\
+\end{longtable}
+
+\begin{longtable}{lccccc}
+\caption{Simulation with known ground truth, given as means over 20 simulated datasets ($k = 50$). Precision@$k$ is the fraction of the panel that is truly informative, and transfer is the balanced accuracy on the independent simulated cohort. $\Delta$ vs best is the mean paired difference in transfer from the best single method of each dataset, chosen in hindsight using the ground truth, and $\Delta$ vs most stable is the corresponding difference from the most stable single method. NA, not applicable.}\label{tab:S6}\\
+\hline
+\textbf{Panel} & \textbf{Stability} & \textbf{Precision@$k$} & \textbf{Transfer} & \textbf{$\Delta$ vs best} & \textbf{$\Delta$ vs most stable} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Panel} & \textbf{Stability} & \textbf{Precision@$k$} & \textbf{Transfer} & \textbf{$\Delta$ vs best} & \textbf{$\Delta$ vs most stable} \\
+\hline
+\endhead
+\hline
+\endfoot
+ExtraTrees & 0.377 & 0.668 & 0.863 & NA & NA \\
+GCN & 0.297 & 0.633 & 0.860 & NA & NA \\
+L1-Logistic & 0.492 & 0.592 & 0.853 & NA & NA \\
+RandomForest & 0.356 & 0.654 & 0.863 & NA & NA \\
+SNF & 0.013 & 0.029 & 0.302 & NA & NA \\
+Univariate-ANOVA & 0.552 & 0.699 & 0.864 & NA & NA \\
+Best single (hindsight) & NA & 0.661 & 0.881 & NA & NA \\
+Most stable single & NA & 0.688 & 0.863 & NA & NA \\
+Consensus(all) & NA & 0.689 & 0.862 & -0.019 & -0.001 \\
+Consensus(stable) & NA & 0.679 & 0.864 & -0.017 & +0.001 \\
+Consensus(weighted) & NA & 0.688 & 0.862 & -0.018 & -0.001 \\
+\end{longtable}
+
+\normalsize
+
+\section{Supplementary Figures}
+
+No supplementary figures accompany this submission. All figures are provided as main-text Figures 1 to 7.
+
+\end{document}
